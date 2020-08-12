@@ -1,0 +1,12 @@
+tbstr=201901
+testr=201912
+nyears=1
+eradir=f:/era5/
+outdir=f:/output/
+isboundaryfile=f:/boundary0p25.txt
+process_num=4
+mapdir=e:/chinamap
+lonmin=89.5
+lonmax=103
+latmin=31.5
+latmax=39.5
