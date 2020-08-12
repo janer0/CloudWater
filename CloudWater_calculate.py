@@ -2,13 +2,7 @@
 """
 Created on Tue Jul 30 15:03:18 2019
 
-@author: Administrator
-fujian:23-29,115-121，0.25*0.25，25*25
-era5
-lat是从大到小的，和fnl的grib相反，lon正常
-[27,104,20,112.5]
-
-加上凝结-蒸发<0的情况
+@author: Jian Yue
 """
 from datetime import datetime
 import numpy as np 
