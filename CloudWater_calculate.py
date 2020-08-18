@@ -2,7 +2,13 @@
 """
 Created on Tue Jul 30 15:03:18 2019
 
-@author: Jian Yue
+@author: Administrator
+fujian:23-29,115-121，0.25*0.25，25*25
+era5
+lat是从大到小的，和fnl的grib相反，lon正常
+[27,104,20,112.5]
+
+加上凝结-蒸发<0的情况
 """
 from datetime import datetime
 import numpy as np 
@@ -293,6 +299,7 @@ if __name__ == '__main__':
         nc_obj=Dataset(filedir+'\\era5_'+tbstr+'_rain.nc')
         nc_obj.set_auto_mask(False)
         tpm=(nc_obj.variables['tp'][:])  #m
+        evap=-(nc_obj.variables['e'][:]+nc_obj.variables['es'][:])  #地面蒸发，m
         lat0p1=(nc_obj.variables['latitude'][:])  #这里是从大到小的
         lon0p1=(nc_obj.variables['longitude'][:])
         nc_obj.close()
@@ -310,8 +317,9 @@ if __name__ == '__main__':
                     nc_obj=Dataset(filedir+'\\era5_'+tstr+'_rain.nc')
                     nc_obj.set_auto_mask(False)
                     temp=(nc_obj.variables['tp'][:])  #m
-                    evap=-(nc_obj.variables['e'][:]+nc_obj.variables['es'][:])  #地面蒸发，m
                     tpm=np.append(tpm, temp, axis=0)
+                    temp=-(nc_obj.variables['e'][:]+nc_obj.variables['es'][:])  #m
+                    evap=np.append(evap, temp, axis=0)
                     nc_obj.close()
             else: #跨年
                 for i in range(12-int(tbstr[4:6])):
